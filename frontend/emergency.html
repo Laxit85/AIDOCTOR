@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Emergency Services - India</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7fafc;
+            min-height: 100vh;
+            perspective: 1000px;
+        }
+        .emergency-service {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+        }
+        .emergency-service:hover {
+            transform: translateY(-5px) translateZ(20px) rotateX(2deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        .emergency-number {
+            color: #f44336;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background-color: #ffebee;
+            transform: translateZ(10px);
+            display: inline-block;
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            transform: translateZ(30px);
+            background-color: #2563eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 0;
+            flex-grow: 1;
+        }
+        h2 {
+            color: #1e40af;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 8px;
+            margin-top: 0;
+            transform: translateZ(15px);
+        }
+        h3 {
+            color: #28a745;
+            transform: translateZ(10px);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            transform-style: preserve-3d;
+        }
+        li {
+            margin: 10px 0;
+            padding: 8px;
+            background-color: #f8fafc;
+            border-radius: 4px;
+            transform: translateZ(5px);
+            transition: transform 0.3s ease;
+        }
+        li:hover {
+            transform: translateZ(15px);
+        }
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            transform: translateZ(25px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        footer p {
+            margin: 5px 0;
+            transform: translateZ(5px);
+        }
+        .home-link {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: #2563eb;
+            font-size: 24px;
+            text-decoration: none;
+            transform-style: preserve-3d;
+            transform: translateZ(40px);
+            transition: transform 0.3s ease;
+        }
+        .home-link:hover {
+            color: #1e40af;
+            transform: translateZ(50px) scale(1.1);
+        }
+        .header-home-link {
+            position: absolute;
+            right: 20px;
+            color: #ffffff;
+            font-size: 24px;
+            text-decoration: none;
+            transform: translateZ(40px);
+            transition: transform 0.3s ease;
+        }
+        .header-home-link:hover {
+            transform: translateZ(50px) scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1>Medical Emergency Services - India
+            <a href="./index.html" class="header-home-link"><i class="fas fa-home"></i></a>
+        </h1>
+    </div>
+    
+    <div class="emergency-service">
+        <h2>Emergency Medical Numbers</h2>
+        <ul>
+            <li><span class="emergency-number">102</span> - Ambulance Services</li>
+            <li><span class="emergency-number">108</span> - Emergency Medical Service</li>
+            <li><span class="emergency-number">1066</span> - Anti-Poison Emergency</li>
+        </ul>
+    </div>
+
+    <div class="emergency-service">
+        <h2>Major Government Hospitals</h2>
+        
+        <h3>AIIMS (All India Institute of Medical Sciences)</h3>
+        <p>Location: Ansari Nagar, New Delhi</p>
+        <p>Emergency Contact: <span class="emergency-number">(011) 26588500</span></p>
+        <p>Ambulance Service: <span class="emergency-number">(011) 26588700</span></p>
+        
+        <h3>Safdarjung Hospital</h3>
+        <p>Location: Ansari Nagar West, New Delhi</p>
+        <p>Emergency Contact: <span class="emergency-number">(011) 26707444</span></p>
+        <p>Casualty Department: <span class="emergency-number">(011) 26730000</span></p>
+    </div>
+
+    <div class="emergency-service">
+        <h2>24/7 Emergency Medical Services</h2>
+        <ul>
+            <li>National Heart Institute: <span class="emergency-number">(011) 26441293</span></li>
+            <li>Apollo Hospital Emergency: <span class="emergency-number">(011) 26925858</span></li>
+            <li>Max Hospital Emergency: <span class="emergency-number">(011) 26515050</span></li>
+        </ul>
+    </div>
+
+    <div class="emergency-service">
+        <h2>Blood Banks Emergency</h2>
+        <ul>
+            <li>Indian Red Cross Society: <span class="emergency-number">(011) 23359379</span></li>
+            <li>Rotary Blood Bank: <span class="emergency-number">(011) 42444400</span></li>
+        </ul>
+    </div>
+
+    <div class="emergency-service">
+        <h2>COVID-19 Helpline</h2>
+        <p>National Helpline: <span class="emergency-number">1075</span></p>
+        <p>State COVID Helpline: <span class="emergency-number">011-22307145</span></p>
+    </div>
+
+    <footer>
+        <p><strong>Important Note:</strong> In case of medical emergency, dial 102 or 108 for immediate ambulance service</p>
+        <p>Last Updated: <script>document.write(new Date().toLocaleDateString())</script></p>
+    </footer>
+</body>
+</html>

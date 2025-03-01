@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Title Tag -->
+<title>AI Doctor - Your Trusted Healthcare Companion</title>
+
+<!-- Meta Description -->
+<meta name="description" content="AI Doctor offers personalized healthcare solutions, symptom checks, health advice, and easy access to medical services. Empowering you to take control of your health with AI technology.">
+
+<!-- Meta Keywords (optional, as they are less impactful now) -->
+<meta name="keywords" content="AI Doctor, healthcare, symptom checker, health advice, medical services, patient history, emergency contacts, online consultation">
+
+<!-- Robots Meta Tag -->
+<meta name="robots" content="index, follow">
+
+<!-- Viewport Meta Tag -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Open Graph Tags for Social Media Sharing -->
+<meta property="og:title" content="AI Doctor - Your Trusted Healthcare Companion">
+<meta property="og:description" content="AI Doctor provides personalized healthcare solutions, symptom checks, and health advice. Empowering you to take control of your health with AI technology.">
+<meta property="og:image" content="URL_TO_YOUR_LOGO_OR_IMAGE.jpg"> <!-- Replace with your image URL -->
+<meta property="og:url" content="https://www.yourwebsite.com"> <!-- Replace with your website URL -->
+<meta property="og:type" content="website">
+
+<!-- Twitter Card Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Doctor - Your Trusted Healthcare Companion">
+<meta name="twitter:description" content="AI Doctor offers personalized healthcare solutions, symptom checks, and health advice. Empowering you to take control of your health with AI technology.">
+<meta name="twitter:image" content="URL_TO_YOUR_LOGO_OR_IMAGE.jpg"> <!-- Replace with your image URL -->
+    <title>AI Doctor Home Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="./assets/home.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Doctor</h1>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="./about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="./contect.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <section class="text-center">
+            <h2>Welcome to AI Doctor</h2>
+            <p>Your one-stop solution for  healthcare needs.</p>
+        </section>
+        <section class="grid">
+            <div class="card">
+                <img src="https://storage.googleapis.com/a1aa/image/sntTVijQbUKOBB00f67I7UzQ8fhlPmFEQjBVrEr7CeegkmegC.jpg" alt="Icon representing symptom check" width="100" height="100">
+                <h3>Start Symptoms Check</h3>
+                <p>Begin your journey to better health by checking your symptoms.</p>
+                <a href="./symptoms.html">Start Now</a>
+            </div>
+            <div class="card">
+                <img src="https://storage.googleapis.com/a1aa/image/wtKsA5ZTTao5I9ce0of6cX3mBOY6DlL264zjyItdxbRLppHUA.jpg" alt="Icon representing health advice" width="100" height="100">
+                <h3>Get Health Advice</h3>
+                <p>Receive professional health advice tailored to your needs.</p>
+                <a href="./advice.html">Get Advice</a>
+            </div>
+            <div class="card">
+                <img src="https://storage.googleapis.com/a1aa/image/cC6vzSIiAsJ9LxwAPVEsFqWiCzxhxxtaLvB2nre1zbPl00DKA.jpg" alt="Icon representing visible symptoms check" width="100" height="100">
+                <h3>Check Visible Symptoms</h3>
+                <p>Identify and understand visible symptoms with ease.</p>
+                <a href="./visible.html">Check Now</a>
+            </div>
+            <div class="card">
+                <img src="https://storage.googleapis.com/a1aa/image/UHeuYVP1TCzLbyHRoNcInV15WPfUoYOVojdeTkLuNAiNSTPoA.jpg" alt="Icon representing patient history access" width="100" height="100">
+                <h3>Access Patient History</h3>
+                <p>View and manage your medical history securely.</p>
+                <a href="./history.html">Access Now</a>
+            </div>
+            <div class="card">
+                <img src="https://storage.googleapis.com/a1aa/image/jBm8yVLnWRoOCNwHedLEtYRpYke4aqwextnzCYPa6F0TSTPoA.jpg" alt="Icon representing emergency contact info" width="100" height="100">
+                <h3>Emergency Contact Info</h3>
+                <p>Quickly access emergency contact information.</p>
+                <a href="./emergency.html">View Info</a>
+            </div>
+        </section>
+    </main>
+    
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyDETva9v2O6u4Eb2e4zHvOCEjhet-ZlK64",
+          authDomain: "aidoctor-ca07f.firebaseapp.com",
+          projectId: "aidoctor-ca07f",
+          storageBucket: "aidoctor-ca07f.firebasestorage.app",
+          messagingSenderId: "798968310227",
+          appId: "1:798968310227:web:68c847b58f27efdb00a726",
+          measurementId: "G-TFDC9JZMWM"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 AI Doctor. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

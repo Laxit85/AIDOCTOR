@@ -1,0 +1,172 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ebf8ff;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+        .card {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            flex-shrink: 1;
+            transition: box-shadow 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            background-color: #4299e1;
+            color: #ffffff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            position: relative;
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .header a {
+            color: #ffffff;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        .header a:hover {
+            color: #e2e8f0;
+        }
+        .section {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+        .section h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .section p {
+            margin-top: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            color: #4a5568;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 0.5rem;
+            outline: none;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #4299e1;
+            background-color: #ebf8ff;
+        }
+        .form-group textarea {
+            resize: none;
+        }
+        .submit-btn {
+            background-color: #4299e1;
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: #3182ce;
+        }
+        .char-count {
+            color: #4a5568;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <header class="header">
+                <h1>Contact Us</h1>
+                <a href="./index.html" class="home-icon"><i class="fas fa-home fa-2x"></i></a>
+            </header>
+            <div class="section">
+                <h2>Our Information</h2>
+                <p>Name: Laxit jangid </p>
+                <p>Contact No: +91 7878429752</p>
+              
+            </div>
+            <div class="section">
+                <h2>Get in Touch</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contact No</label>
+                        <input type="tel" id="contact" name="contact" maxlength="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" maxlength="180" required></textarea>
+                        <div id="charCount" class="char-count">180 characters remaining</div>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Form submitted successfully!');
+        });
+
+        document.getElementById('message').addEventListener('input', function() {
+            const maxChars = 180;
+            const remainingChars = maxChars - this.value.length;
+            document.getElementById('charCount').textContent = `${remainingChars} characters remaining`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Patient History
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #d1e7ff;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            flex-grow: 1;
+            flex-shrink: 1;
+            position: relative;
+        }
+        .header {
+            width: 80%;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 0 auto 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .header .home-link {
+            position: absolute;
+            right: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        .header .home-link i {
+            margin-right: 5px;
+        }
+        .header .home-link:hover {
+            text-decoration: underline;
+        }
+        .search-bar {
+            display: flex;
+            margin-bottom: 20px;
+            width: 80%;
+            margin: 0 auto 20px;
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+        .patient-template {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            flex-grow: 1;
+            flex-shrink: 1;
+            width: 80%;
+            margin: 0 auto 20px;
+        }
+        .patient-template img {
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .patient-template .details {
+            text-align: left;
+        }
+        .patient-template .details h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .patient-template .details p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .view-details {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .view-details:hover {
+            background-color: #218838;
+        }
+  </style>
+  <script>
+    // Function to load patient history from localStorage
+    function loadPatientHistory() {
+        const patientHistory = JSON.parse(localStorage.getItem('patientHistory')) || [];
+        const historyContainer = document.getElementById('patient-history-container');
+        historyContainer.innerHTML = ''; // Clear existing content
+
+        if (patientHistory.length === 0) {
+            // Show default template if no history exists
+            historyContainer.innerHTML = `
+                <div class="patient-template">
+                    <img src="default-avatar.jpg" width="50" height="50" alt="Default patient"/>
+                    <div class="details">
+                        <h2>No Patient History</h2>
+                        <p>No visits recorded</p>
+                    </div>
+                </div>`;
+        } else {
+            // Display each patient's history
+            patientHistory.forEach(patient => {
+                const template = `
+                    <div class="patient-template">
+                        <img src="${patient.image || 'default-avatar.jpg'}" width="50" height="50" alt="Profile picture of ${patient.name}"/>
+                        <div class="details">
+                            <h2>${patient.name}</h2>
+                            <p>Last Visit: ${patient.lastVisit}</p>
+                        </div>
+                    </div>`;
+                historyContainer.innerHTML += template;
+            });
+        }
+    }
+
+    // Load patient history when page loads
+    window.onload = loadPatientHistory;
+  </script>
+ </head>
+ <body>
+  <div class="container">
+   <div class="header">
+    <h1>
+     Patient History
+    </h1>
+    <a class="home-link" href="./index.html">
+     <i class="fas fa-home"></i></a>
+   </div>
+   <div class="search-bar">
+    <input placeholder="Search patient history..." type="text"/>
+    <button type="button">
+     <i class="fas fa-search">
+     </i>
+    </button>
+   </div>
+   <div id="patient-history-container">
+    <!-- Patient history will be dynamically loaded here -->
+   </div>
+   <a class="view-details" href="#">
+    View Detailed History
+   </a>
+  </div>
+ </body>
+</html>

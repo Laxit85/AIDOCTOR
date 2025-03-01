@@ -1,0 +1,359 @@
+<html>
+<head>
+    <title>Describe Symptoms</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f3f4f6;
+            font-family: 'Roboto', sans-serif;
+            perspective: 1000px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            flex-shrink: 1;
+            transform-style: preserve-3d;
+        }
+        header {
+            margin-bottom: 1px;
+            background-color: #2563eb;
+            width: 100%;
+            max-width: auto;
+            transform: translateZ(20px);
+            transition: transform 0.3s ease;
+        }
+        header:hover {
+            transform: translateZ(40px);
+        }
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .mb-6 {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: auto;
+            transform: translateZ(10px);
+            transition: transform 0.3s ease;
+        }
+        .mb-6:hover {
+            transform: translateZ(30px);
+        }
+        .mb-2 {
+            margin-bottom: 16px;
+        }
+        .input {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            transform: translateZ(5px);
+            transition: transform 0.3s ease;
+        }
+        .input:focus {
+            transform: translateZ(25px);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+        @media (min-width: 640px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .symptom-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transform: translateZ(15px);
+            transition: transform 0.3s ease;
+        }
+        .symptom-form:hover {
+            transform: translateZ(35px);
+        }
+        .symptom-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateZ(5px);
+            transition: transform 0.3s ease;
+        }
+        .symptom-group:hover {
+            transform: translateZ(25px);
+        }
+        .symptom-group label {
+            font-size: 1rem;
+            color: #374151;
+        }
+        .symptom-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #3b82f6;
+        }
+        .analyze-button {
+            background-color: #235ebc;
+            color: white;
+            padding: 16px 128px;
+            font-size: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 200px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transform: translateZ(20px);
+            border: none;
+        }
+        .analyze-button:hover {
+            background-color: #059669;
+            transform: translateZ(40px);
+        }
+        .flex {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+        .full-width-button {
+            background-color: #235ebc;
+            color: white;
+            padding: 16px 128px;
+            font-size: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 24px;
+            margin-bottom: 24px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transform: translateZ(20px);
+        }
+        .full-width-button:hover {
+            background-color: #2563eb;
+            transform: translateZ(40px);
+        }
+        .fas {
+            color: aliceblue;
+            display: flex;
+            justify-content: flex-end;
+            font-size: 24px;
+            margin-top: 30px;
+            transform: translateZ(10px);
+            transition: transform 0.3s ease;
+        }
+        .fas:hover {
+            transform: translateZ(30px);
+        }
+        .text-3xl {
+            color: #f3f4f6;
+        }
+        .custom-symptoms {
+            display: none;
+            margin-top: 20px;
+            width: 100%;
+            transform: translateZ(15px);
+            transition: transform 0.3s ease;
+        }
+        .custom-symptoms.show {
+            display: block;
+        }
+        .custom-symptoms:hover {
+            transform: translateZ(35px);
+        }
+        .custom-symptoms textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-family: 'Roboto', sans-serif;
+            resize: vertical;
+            transform: translateZ(5px);
+            transition: transform 0.3s ease;
+        }
+        .custom-symptoms textarea:focus {
+            transform: translateZ(25px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="mb-8">
+            <a href="./index.html" class="home"><i class="fas fa-home "></i> </a>
+            <h1 class="text-3xl font-bold mb-4">Describe Symptoms</h1>
+        </header>
+        <div class="mb-6">
+            <input type="text" placeholder="Search symptoms..." class="input">
+        </div>
+        <form class="symptom-form" id="symptomForm">
+            <div class="symptom-group">
+                <input type="checkbox" id="fever" name="symptoms">
+                <label for="fever">Fever</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="rash" name="symptoms">
+                <label for="rash">Skin Rash/Lesions</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="joint-pain" name="symptoms">
+                <label for="joint-pain">Joint Pain</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="headache" name="symptoms">
+                <label for="headache">Headache</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="fatigue" name="symptoms">
+                <label for="fatigue">Fatigue</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="cough" name="symptoms">
+                <label for="cough">Cough</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="breathing" name="symptoms">
+                <label for="breathing">Difficulty Breathing</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="itching" name="symptoms">
+                <label for="itching">Itching</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="stomach-pain" name="symptoms">
+                <label for="stomach-pain">Stomach Pain</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="nausea" name="symptoms">
+                <label for="nausea">Nausea/Vomiting</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="muscle-pain" name="symptoms">
+                <label for="muscle-pain">Muscle Pain</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="swelling" name="symptoms">
+                <label for="swelling">Swelling</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="stiffness" name="symptoms">
+                <label for="stiffness">Neck/Back Stiffness</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="yellowish-skin" name="symptoms">
+                <label for="yellowish-skin">Yellowish Skin</label>
+            </div>
+            <div class="symptom-group">
+                <input type="checkbox" id="burning-urination" name="symptoms">
+                <label for="burning-urination">Burning Urination</label>
+            </div>
+        </form>
+        <div class="flex">
+            <button class="full-width-button" onclick="toggleCustomSymptoms()">
+                Add More Symptoms
+            </button>
+        </div>
+        <div class="custom-symptoms" id="customSymptoms">
+            <textarea placeholder="Please describe any additional symptoms here..."></textarea>
+        </div>
+        <div class="flex">
+        <a href="./analyze_result.html"><button class="analyze-button" onclick="validateAndAnalyze()">Analyze</button></a>
+        </div>
+    </div>
+
+    <script>
+        function toggleCustomSymptoms() {
+            const customSymptoms = document.getElementById('customSymptoms');
+            customSymptoms.classList.toggle('show');
+        }
+
+        function validateAndAnalyze() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            let isChecked = false;
+            
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    isChecked = true;
+                }
+            });
+
+            const customText = document.querySelector('#customSymptoms textarea').value.trim();
+            if (isChecked || customText) {
+                window.location.href = './analyze_result.html';
+            } else {
+                alert('Please select at least one symptom or describe your symptoms before proceeding.');
+            }
+        }
+
+       
+            // Function to send symptoms to the backend
+            function sendSymptoms(symptoms) {
+                fetch('http://127.0.0.1:5000/api/symptoms', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ symptoms: symptoms })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // Handle the response from the backend
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+        
+            // Example of how to call the function
+            function validateAndAnalyze() {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                let selectedSymptoms = [];
+                
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        selectedSymptoms.push(checkbox.id);
+                    }
+                });
+        
+                if (selectedSymptoms.length > 0) {
+                    sendSymptoms(selectedSymptoms);
+                } else {
+                    alert('Please select at least one symptom before proceeding.');
+                }
+            }
+       
+    </script>
+</body>
+</html>

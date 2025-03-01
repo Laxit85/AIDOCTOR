@@ -1,0 +1,226 @@
+<html>
+<head>
+    <title>Health Advice</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            perspective: 1000px;
+        }
+
+        header {
+            background-color: #2563eb;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            transform: translateZ(20px);
+            transition: transform 0.3s ease;
+        }
+
+        header:hover {
+            transform: translateZ(40px);
+        }
+
+        .home-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%) translateZ(10px);
+            color: white;
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .home-icon:hover {
+            transform: translateY(-50%) translateZ(30px);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            transform-style: preserve-3d;
+        }
+
+        .advice-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: start;
+            gap: 20px;
+            transform: translateZ(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .advice-card:hover {
+            transform: translateZ(30px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .advice-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transform: translateZ(5px);
+            transition: transform 0.3s ease;
+        }
+
+        .advice-image:hover {
+            transform: translateZ(15px);
+        }
+
+        .advice-content-wrapper {
+            flex: 1;
+            transform: translateZ(5px);
+        }
+
+        .advice-title {
+            color: #2563eb;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .advice-content {
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .emergency-card {
+            background: #fee2e2;
+            border-left: 4px solid #dc2626;
+        }
+
+        .emergency-title {
+            color: #dc2626;
+        }
+
+        @media (max-width: 768px) {
+            .advice-card {
+                flex-direction: column;
+            }
+            
+            .advice-image {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Health Advice</h1>
+        <a href="./index.html"><i class="fas fa-home home-icon"></i></a>
+    </header>
+
+    <div class="container">
+        <div class="advice-card emergency-card">
+            <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=200&h=200" alt="Emergency room entrance with red emergency sign" class="advice-image">
+            <div class="advice-content-wrapper">
+                <h2 class="advice-title emergency-title">Emergency Warning Signs</h2>
+                <p class="advice-content">
+                    If you experience any of these symptoms, seek immediate medical attention:<br>
+                    • Severe chest pain or pressure<br>
+                    • Difficulty breathing or shortness of breath<br>
+                    • Sudden severe headache<br>
+                    • Sudden confusion or difficulty speaking<br>
+                    • Severe abdominal pain
+                </p>
+            </div>
+        </div>
+
+        <div class="advice-card">
+            <img src="https://th.bing.com/th/id/OIP.gZULb3qnHfHSVwr3JyCxowHaHa?rs=1&pid=ImgDetMain" alt="Peaceful bedroom with soft lighting and comfortable bed" class="advice-image">
+            <div class="advice-content-wrapper">
+                <h2 class="advice-title">Sleep & Rest</h2>
+                <p class="advice-content">
+                    • Maintain a consistent sleep schedule<br>
+                    • Aim for 7-8 hours of sleep nightly<br>
+                    • Create a relaxing bedtime routine<br>
+                    • Keep bedroom cool, dark and quiet<br>
+                    • Avoid screens before bedtime<br>
+                    • Don't consume caffeine late in the day<br>
+                    • Take short breaks during work hours<br>
+                    • Practice relaxation techniques
+                </p>
+            </div>
+        </div>
+
+        <div class="advice-card">
+            <img src="https://th.bing.com/th/id/OIP.mO0opU9OOZOGLF2uSXr2vQHaE8?rs=1&pid=ImgDetMain" alt="Medical professional in protective equipment" class="advice-image">
+            <div class="advice-content-wrapper">
+                <h2 class="advice-title">Personal Hygiene</h2>
+                <p class="advice-content">
+                    • Shower or bathe daily<br>
+                    • Wash hands frequently with soap<br>
+                    • Brush teeth twice daily<br>
+                    • Change clothes daily<br>
+                    • Keep nails clean and trimmed<br>
+                    • Use deodorant<br>
+                    • Clean personal items regularly<br>
+                    • Maintain clean living spaces
+                </p>
+            </div>
+        </div>
+
+        <div class="advice-card">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=200&h=200" alt="Fresh fruits, vegetables and healthy foods" class="advice-image">
+            <div class="advice-content-wrapper">
+                <h2 class="advice-title">Basic Nutrition</h2>
+                <p class="advice-content">
+                    • Drink 8 glasses of water daily<br>
+                    • Eat fresh fruits and vegetables<br>
+                    • Include protein in every meal<br>
+                    • Choose whole grain foods<br>
+                    • Limit processed foods and sugar<br>
+                    • Eat regular meals<br>
+                    • Control portion sizes<br>
+                    • Chew food thoroughly
+                </p>
+            </div>
+        </div>
+
+        <div class="advice-card">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=200&h=200" alt="Person doing stretching exercises" class="advice-image">
+            <div class="advice-content-wrapper">
+                <h2 class="advice-title">Daily Movement</h2>
+                <p class="advice-content">
+                    • Walk for 30 minutes daily<br>
+                    • Take stairs instead of elevator<br>
+                    • Do simple stretching exercises<br>
+                    • Stand up every hour if sitting long<br>
+                    • Do household chores actively<br>
+                    • Practice good posture<br>
+                    • Garden or do yard work<br>
+                    • Park farther from entrances
+                </p>
+            </div>
+        </div>
+
+        <div class="advice-card">
+            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=200&h=200" alt="Person meditating in nature" class="advice-image">
+            <div class="advice-content-wrapper">
+                <h2 class="advice-title">Mental Wellness</h2>
+                <p class="advice-content">
+                    • Practice deep breathing daily<br>
+                    • Spend time in nature<br>
+                    • Connect with loved ones<br>
+                    • Set healthy boundaries<br>
+                    • Take time for hobbies<br>
+                    • Express gratitude daily<br>
+                    • Get regular sunlight<br>
+                    • Maintain social connections
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

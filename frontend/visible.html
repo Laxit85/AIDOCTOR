@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7fafc;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #2563eb;
+            color: white;
+            padding: 1rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            flex-grow: 1;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-left: 1rem;
+            font-size: 0.8rem;
+        }
+        nav a:hover {
+            color: #d1d5db;
+        }
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            flex-grow: 1;
+        }
+        .card {
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            margin: 0 auto 1rem;
+            display: block;
+            max-width: 30%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease;
+        }
+        .card img:hover {
+            transform: scale(1.05);
+        }
+        .card button {
+            background-color: #2563eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .card button:hover {
+            background-color: #1e40af;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .card button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.5);
+        }
+        .card button:active {
+            transform: scale(0.95);
+        }
+        .upload-section {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: #f8fafc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .upload-section input[type="file"] {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            width: 100%;
+            border: 2px dashed #cbd5e1;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .upload-section input[type="file"]:hover {
+            border-color: #2563eb;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .upload-section input[type="file"]:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        #videoElement {
+            width: 100%;
+            max-width: 640px;
+            margin: 1rem auto;
+            display: none;
+            border-radius: 8px;
+        }
+        #canvas {
+            display: none;
+            max-width: 640px;
+            margin: 1rem auto;
+        }
+        #capturedImage {
+            max-width: 100%;
+            margin-top: 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+        .camera-controls {
+            display: none;
+            margin-top: 1rem;
+        }
+        .captured-images-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+        }
+        .captured-images-gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .image-preview-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-preview-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .image-preview-content img {
+            max-width: 100%;
+            max-height: 70vh;
+        }
+        .close-preview {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        .preview-buttons {
+            margin-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Camera Access</h1>
+            <nav>
+                <a href="./index.html"><i class="fas fa-home"></i></a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="card">
+            <img src="https://thumbs.dreamstime.com/b/mature-man-character-capturing-moments-camera-framing-shots-precision-adjusting-settings-ideal-exposure-exploring-276700795.jpg" alt="A high-resolution DSLR camera with a large lens">
+
+            <div class="upload-section">
+                <input type="file" id="uploadInput" accept="image/*">
+                <button id="uploadButton">Upload Image</button>
+                <button id="cameraButton"><i class="fas fa-camera"></i> Open Camera</button>
+            </div>
+            <video id="videoElement" autoplay playsinline></video>
+            <canvas id="canvas"></canvas>
+            <img id="capturedImage" alt="Captured photo">
+            <div class="camera-controls">
+                <button id="captureButton"><i class="fas fa-camera"></i> Capture Photo</button>
+                <button id="retakeButton"><i class="fas fa-redo"></i> Retake</button>
+                <button id="saveButton"><i class="fas fa-save"></i> Save Photo</button>
+            </div>
+            <div class="captured-images-gallery" id="imageGallery"></div>
+        </div>
+    </main>
+
+    <!-- Image Preview Modal -->
+    <div class="image-preview-modal" id="imagePreviewModal">
+        <div class="image-preview-content">
+            <span class="close-preview" onclick="closePreview()">&times;</span>
+            <img id="previewImage" src="" alt="Preview">
+            <div class="preview-buttons">
+                <button onclick="confirmImage()">Confirm</button>
+                <button onclick="closePreview()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const uploadInput = document.getElementById('uploadInput');
+        const uploadButton = document.getElementById('uploadButton');
+        const cameraButton = document.getElementById('cameraButton');
+        const videoElement = document.getElementById('videoElement');
+        const canvas = document.getElementById('canvas');
+        const capturedImage = document.getElementById('capturedImage');
+        const captureButton = document.getElementById('captureButton');
+        const retakeButton = document.getElementById('retakeButton');
+        const saveButton = document.getElementById('saveButton');
+        const cameraControls = document.querySelector('.camera-controls');
+        const imageGallery = document.getElementById('imageGallery');
+        const imagePreviewModal = document.getElementById('imagePreviewModal');
+        const previewImage = document.getElementById('previewImage');
+        let stream = null;
+        let capturedImages = [];
+
+        // Load captured images from localStorage on page load
+        window.addEventListener('load', () => {
+            const storedImages = localStorage.getItem('capturedImages');
+            if (storedImages) {
+                capturedImages = JSON.parse(storedImages);
+                displayCapturedImages();
+            }
+        });
+
+        function displayCapturedImages() {
+            imageGallery.innerHTML = '';
+            capturedImages.forEach((imageData, index) => {
+                const img = document.createElement('img');
+                img.src = imageData;
+                img.alt = `Captured image ${index + 1}`;
+                img.onclick = () => showImagePreview(imageData);
+                imageGallery.appendChild(img);
+            });
+        }
+
+        function showImagePreview(imageData) {
+            previewImage.src = imageData;
+            imagePreviewModal.style.display = 'flex';
+        }
+
+        function closePreview() {
+            imagePreviewModal.style.display = 'none';
+        }
+
+        function confirmImage() {
+            alert('Image confirmed!');
+            closePreview();
+        }
+
+        uploadButton.addEventListener('click', () => {
+            const file = uploadInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    capturedImages.push(e.target.result);
+                    localStorage.setItem('capturedImages', JSON.stringify(capturedImages));
+                    displayCapturedImages();
+                };
+                reader.readAsDataURL(file);
+            } else {
+                console.log('No image selected.');
+            }
+        });
+
+        cameraButton.addEventListener('click', async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        facingMode: 'environment',
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    } 
+                });
+                videoElement.srcObject = stream;
+                videoElement.style.display = 'block';
+                cameraControls.style.display = 'block';
+                cameraButton.style.display = 'none';
+                capturedImage.style.display = 'none';
+            } catch (err) {
+                console.error('Error accessing camera:', err);
+                alert('Unable to access camera. Please make sure you have granted camera permissions.');
+            }
+        });
+
+        captureButton.addEventListener('click', () => {
+            // Set canvas dimensions to match video dimensions
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            
+            // Draw the video frame to canvas
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+            
+            // Convert canvas to image
+            const imageData = canvas.toDataURL('image/jpeg', 0.8);
+            
+            // Display captured image
+            capturedImage.src = imageData;
+            capturedImage.style.display = 'block';
+            videoElement.style.display = 'none';
+            
+            // Update buttons
+            captureButton.style.display = 'none';
+            retakeButton.style.display = 'inline-block';
+            saveButton.style.display = 'inline-block';
+            
+            // Store the captured image
+            capturedImages.push(imageData);
+            localStorage.setItem('capturedImages', JSON.stringify(capturedImages));
+            displayCapturedImages();
+            
+            // Show preview immediately
+            showImagePreview(imageData);
+        });
+
+        retakeButton.addEventListener('click', () => {
+            capturedImage.style.display = 'none';
+            videoElement.style.display = 'block';
+            captureButton.style.display = 'inline-block';
+            retakeButton.style.display = 'none';
+            saveButton.style.display = 'none';
+            closePreview();
+        });
+
+        saveButton.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = `captured-photo-${Date.now()}.jpg`;
+            link.href = capturedImage.src;
+            link.click();
+        });
+
+        // Cleanup function
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                videoElement.srcObject = null;
+                videoElement.style.display = 'none';
+                capturedImage.style.display = 'none';
+                cameraControls.style.display = 'none';
+                cameraButton.style.display = 'inline-block';
+            }
+        }
+
+        // Clean up when leaving page
+        window.addEventListener('beforeunload', stopCamera);
+    </script>
+</body>
+</html>
